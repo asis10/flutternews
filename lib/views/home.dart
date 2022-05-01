@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutternews/helper/news.dart';
 import 'package:flutternews/models/article_model.dart';
 import 'package:flutternews/models/category_model.dart';
 import 'package:flutternews/views/article_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -157,19 +160,30 @@ class BlogTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-         Navigator.push(context, MaterialPageRoute(
-           builder: (context)=> ArticleView(
+         Navigator.push(context, PageTransition(
+           type: PageTransitionType.bottomToTop,
+           duration: Duration(seconds: 1),
+           reverseDuration: Duration(seconds: 1),
+          child:  ArticleView(
              blogUrl: url,
            )
            ));
       },
+      // onTap: (){
+      //    Navigator.push(context, MaterialPageRoute(
+      //      builder: (context)=> ArticleView(
+      //        blogUrl: url,
+      //      )
+      //      ));
+      // },
       child: Container(
         margin: EdgeInsets.only(bottom: 16),
         child: Column(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(imageUrl)),
+              child: CachedNetworkImage(imageUrl: imageUrl)),
+              //child: Image.network(imageUrl)),
             SizedBox(height: 15,),
             Text(title,style: TextStyle(fontSize: 20,),),
             Text(desc,style: TextStyle(color: Colors.black38),)

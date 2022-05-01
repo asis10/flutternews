@@ -18,17 +18,31 @@ class _ArticleViewState extends State<ArticleView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar :AppBar(
-       title: Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           Text('Flutter',style: TextStyle(color: Colors.black),),
-           Text('News',style: TextStyle(color: Colors.blue),)
-         ],
-       ),
-       backgroundColor: Colors.white,
-       elevation: 0.0,
-     ),
+    appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+            Text(
+              "Flutter",
+              style:
+                  TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
+            ),
+            Text(
+              "News",
+              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+            )
+          ],
+        ),
+        actions: <Widget>[
+          Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: const Icon(
+                Icons.arrow_back,
+              ))
+        ],
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
